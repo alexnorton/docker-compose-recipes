@@ -32,7 +32,7 @@ admin:
   command: "node server.js"
 
 frontend:
-  build: frontend
+  build: frontend/
   ports:
     - "8083:3000"
   volumes:
