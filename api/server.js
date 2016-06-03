@@ -8,7 +8,9 @@ app.use(bodyParser.json());
 
 var db;
 
-mongodb.MongoClient.connect('mongodb://localhost:27017/ocp-compose-demo', function(err, conn) {
+var dbUrl = 'mongodb://' + process.env.MONGO_PORT_27017_TCP_ADDR + ':' + process.env.MONGO_PORT_27017_TCP_PORT + '/ocp-compose-demo';
+
+mongodb.MongoClient.connect(dbUrl, function(err, conn) {
   if (err) {
     throw err;
   }
@@ -50,6 +52,34 @@ app.get('/recipes/:id', function(req, res) {
       }
     });
   } catch (e) {
+    res.status(500).send({ "error": e.message });
+  }
+});
+
+app.post('/recipes/:id', function(req, res) {
+  try {
+    var recipe = req.body;
+    delete recipe._id;
+    db.updateOne({ _id: mongodb.ObjectId(req.params.id) }, { $set: recipe }, function(err) {
+      if(err) {
+        return res.status(500).send({ "error": err });
+      }
+      res.status(204);
+    });
+  } catch(e) {
+    res.status(500).send({ "error": e.message });
+  }
+});
+
+app.delete('/recipes/:id', function(req, res) {
+  try {
+    db.deleteOne({ _id: mongodb.ObjectId(req.params.id) }, null, function(err) {
+      if(err) {
+        return res.status(500).send({ "error": err });
+      }
+      res.status(204);
+    });
+  } catch(e) {
     res.status(500).send({ "error": e.message });
   }
 });

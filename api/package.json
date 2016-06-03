@@ -3,9 +3,6 @@
   "version": "0.0.1",
   "description": "Alex's Recipes API backed by MongoDB",
   "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "dependencies": {
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
