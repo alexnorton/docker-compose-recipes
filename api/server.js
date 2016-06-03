@@ -1,10 +1,21 @@
 var express = require('express'),
   bodyParser = require('body-parser'),
-  mongodb = require('mongodb');
+  mongodb = require('mongodb'),
+  expressStatsd = require('express-statsd');
 
 var app = express();
 
 app.use(bodyParser.json());
+
+app.use(function(req, res, next) {
+  req.statsdKey = 'api';
+  next();
+});
+
+app.use(expressStatsd({
+  host: process.env.METRICS_PORT_8125_UDP_ADDR,
+  port: process.env.METRICS_PORT_8125_UDP_PORT
+}));
 
 var db;
 
