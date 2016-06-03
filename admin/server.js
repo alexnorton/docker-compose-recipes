@@ -25,13 +25,4 @@ app.use('/api', proxy(
   }
 ));
 
-app.use('/renderer', proxy(
-  process.env.RENDERER_PORT_3000_TCP_ADDR + ':' + process.env.RENDERER_PORT_3000_TCP_PORT,
-  {
-    forwardPath: function(req, res) {
-      return require('url').parse(req.url).path;
-    }
-  }
-));
-
 app.listen(3000);
