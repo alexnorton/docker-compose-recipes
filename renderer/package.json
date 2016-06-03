@@ -1,0 +1,12 @@
+{
+  "name": "renderer",
+  "version": "0.0.1",
+  "description": "Alex's Recipes recipe renderer",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "express-statsd": "^0.3.0",
+    "handlebars": "^4.0.5"
+  }
+}
