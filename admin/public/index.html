@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+
+  <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.css" charset="utf-8">
+  <link rel="stylesheet" href="vendor/bootstrap-material-design/dist/css/bootstrap-material-design.css" charset="utf-8">
+  <link rel="stylesheet" href="css/style.css" charset="utf-8">
+
+  <script src="vendor/angular/angular.js" charset="utf-8"></script>
+  <script src="vendor/angular-resource/angular-resource.js" charset="utf-8"></script>
+  <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.js" charset="utf-8"></script>
+  <script src="vendor/objectpath/lib/ObjectPath.js" charset="utf-8"></script>
+  <script src="vendor/tv4/tv4.js" charset="utf-8"></script>
+  <script src="vendor/angular-sanitize/angular-sanitize.js" charset="utf-8"></script>
+  <script src="vendor/angular-schema-form/dist/schema-form.js" charset="utf-8"></script>
+  <script src="vendor/angular-schema-form/dist/bootstrap-decorator.js" charset="utf-8"></script>
+
+  <script src="lib/app.js" charset="utf-8"></script>
+</head>
+
+<body ng-app="admin">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="well" ng-controller="adminController">
+
+          <h1>Alex's Recipes admin</h1>
+
+          <button type="button" class="btn btn-raised btn-primary" ng-click="openForm()">Create new recipe</button>
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>
+                  Title
+                </th>
+                <th>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="recipe in recipes">
+                <td>
+                  {{ recipe.title }}
+                </td>
+                <td>
+                  <a ng-click="openForm(recipe)"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+                  <a ng-click="deleteRecipe(recipe)"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+                </td>
+              </tr>
+              <tr ng-if="recipes.length == 0">
+                <td colspan="2">
+                  No recipes found
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

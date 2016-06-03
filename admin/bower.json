@@ -1,0 +1,11 @@
+{
+  "name": "admin",
+  "description": "Alex's Recipes API admin interface",
+  "dependencies": {
+    "angular": "^1.5.6",
+    "angular-resource": "^1.5.6",
+    "bootstrap-material-design": "^0.5.9",
+    "angular-bootstrap": "^1.3.3",
+    "angular-schema-form": "^0.8.13"
+  }
+}

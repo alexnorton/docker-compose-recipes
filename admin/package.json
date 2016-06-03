@@ -1,0 +1,11 @@
+{
+  "name": "api",
+  "version": "0.0.1",
+  "description": "Alex's Recipes API admin interface",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.13.4",
+    "express-http-proxy": "^0.6.0",
+    "express-statsd": "^0.3.0"
+  }
+}
