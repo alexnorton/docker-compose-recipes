@@ -1,0 +1,59 @@
+api:
+  build: api/
+  ports:
+    - "8080:3000"
+  links:
+    - mongo
+    - metrics
+  volumes:
+    - "./api:/app"
+  command: "node server.js"
+
+renderer:
+  build: renderer/
+  ports:
+    - "8081:3000"
+  volumes:
+    - "./renderer:/app"
+  command: "node server.js"
+  links:
+    - metrics
+
+admin:
+  build: admin/
+  ports:
+    - "8082:3000"
+  links:
+    - api
+    - renderer
+    - metrics
+  volumes:
+    - "./admin:/app"
+  command: "node server.js"
+
+frontend:
+  build: frontend
+  ports:
+    - "8083:3000"
+  volumes:
+    - "./frontend:/app"
+  links:
+    - api
+    - renderer
+    - metrics
+
+mongo:
+  image: mongo
+  ports:
+    - "27018:27017"
+  volumes:
+    - "./mongo:/data/db"
+
+metrics:
+  image: kamon/grafana_graphite
+  volumes:
+    - "./metrics/grafana:/opt/grafana/data"
+  ports:
+    - "8084:80"
+    - "8085:81"
+    - "8125:8125/udp"
