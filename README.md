@@ -13,5 +13,5 @@ $ docker-compose up -d
 * Renderer - http://localhost:8081/
 * Admin - http://localhost:8082/
 * Frontend - http://localhost:8083/
+* Grafana - http://localhost:8084/
 * Graphite - http://localhost:8085/
-* Grafana - http://localhost:8085/
